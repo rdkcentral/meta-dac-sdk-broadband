@@ -1,1 +1,1 @@
-EXTRA_OECONF_remove = "--disable-static "
+EXTRA_OECONF:remove = "--disable-static "

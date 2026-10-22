@@ -1,0 +1,27 @@
+Source: RDKM
+Upstream-Status: Pending
+
+diff -Naur git.orig/include/webconfig_framework.h git/include/webconfig_framework.h
+--- git.orig/include/webconfig_framework.h	2026-07-28 10:32:36.530947181 +0000
++++ git/include/webconfig_framework.h	2026-07-28 10:37:00.941013587 +0000
+@@ -401,7 +401,7 @@
+ 	char multi_comp_subdoc[SUBDOC_NAME_SZ];
+ 	size_t (*calcTimeout) ();  
+     	pErr (*executeBlobRequest) (void*); 
+-	int (*rollbackFunc) (); 
++	int (*rollbackFunc) (char*); 
+ 	void (*freeResources) ();
+ 
+ }
+diff -Naur git.orig/source/webconfig_framework_multi_comp.c git/source/webconfig_framework_multi_comp.c
+--- git.orig/source/webconfig_framework_multi_comp.c	2026-07-28 10:33:43.675471945 +0000
++++ git/source/webconfig_framework_multi_comp.c	2026-07-28 10:36:40.556854275 +0000
+@@ -407,7 +407,7 @@
+         	if ( strcmp(subdoc_name,lmultiCompRegData->multi_comp_subdoc )  == 0 )
+           	{
+ 
+-                	ret = lmultiCompRegData->rollbackFunc();
++                	ret = lmultiCompRegData->rollbackFunc(NULL);
+                 	if ( ret != ROLLBACK_SUCCESS )
+                  	{
+                      		WbError(("rollback failed for %s, return value is %d\n",subdoc_name,ret));

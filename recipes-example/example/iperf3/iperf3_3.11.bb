@@ -20,7 +20,7 @@ SRC_URI = "git://github.com/esnet/iperf.git;branch=master;protocol=https \
 
 SRCREV = "76bd67f6e90e239a7686202d2b1b595159826d24"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/${BP}"
 
 inherit autotools
 
